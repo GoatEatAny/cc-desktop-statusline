@@ -3,9 +3,7 @@
 A status band above the prompt in the Claude Code desktop app, built as a Claude Code
 mod (a plugin of function hooks).
 
-```
-(◷) 5h 40% · ↻ 2:30   (▣) 7d 5% · ↻ Fri 10/9   ($) Oct $16.3 ▦▦▦▦▦▦▦▦▦▦▦  |  (≡) Sess 46% · $15.2 (+$0.21)   (⧗) Cache miss $3.71 [/compact]
-```
+![The band above the prompt in the Claude Code desktop app](docs/screenshot.png)
 
 In the terminal, Claude Code's `statusLine` setting covers this. The desktop app has no status
 line, but mods can draw above its prompt, so this plugin puts the numbers you keep checking in
