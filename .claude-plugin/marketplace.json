@@ -1,0 +1,15 @@
+{
+  "name": "cc-desktop-statusline",
+  "description": "A status band above the Claude Code prompt: usage, limits, cost and activity.",
+  "owner": {
+    "name": "GoatEatAny",
+    "url": "https://github.com/GoatEatAny"
+  },
+  "plugins": [
+    {
+      "name": "cc-desktop-statusline",
+      "source": "./",
+      "description": "A status band above the Claude Code prompt with context use, plan limits, API-equivalent cost and a monthly activity grid."
+    }
+  ]
+}

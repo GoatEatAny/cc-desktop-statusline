@@ -1,0 +1,12 @@
+{
+  "name": "cc-desktop-statusline",
+  "displayName": "CC Desktop Statusline",
+  "version": "0.1.0",
+  "description": "A status band above the Claude Code prompt: 5-hour and 7-day plan limits, this month's API-equivalent cost with a daily activity grid, context use, session and last-turn cost, what a cache miss would cost, and a /compact button. Local only: no network requests.",
+  "author": {
+    "name": "GoatEatAny",
+    "url": "https://github.com/GoatEatAny"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/GoatEatAny/cc-desktop-statusline"
+}
