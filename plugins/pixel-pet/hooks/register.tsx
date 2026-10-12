@@ -12,7 +12,7 @@ import type { EngineInterface, Register, RenderElement } from 'claude-code'
 import type { PixelPetMetric as Metric, PixelPetMode as Mode } from '../types'
 import { buildPet, coatsFor, inspectPet, PET_ID, type Pet, type PetSpec } from './pet-kit.ts'
 import { CAT } from './pets/cat.ts'
-import { futonLeft, pixels, REWARD_MS, rng, SCALE, VIEW_H, type Mood, type Pose } from './sprite.ts'
+import { FUTON_W, futonLeft, pixels, REWARD_MS, rng, SCALE, VIEW_H, type Mood, type Pose } from './sprite.ts'
 
 const mode = { plugin: 'pixel-pet', key: 'mode' } as const
 const happyUntil = { plugin: 'pixel-pet', key: 'happyUntil' } as const
@@ -79,30 +79,33 @@ function sleepZ(x: number): string {
 }
 
 // The futon over a sleeping pet once the cache has gone cold: pulled right over it, ears and
-// all, into a little red mound, the same both ways, its sides spreading out at the foot like a
-// hill's, a white edge along the top and down the spreading sides, a few lighter dots; rising
-// and falling slowly as the pet breathes beneath it. 22 wide: 3 past the sprite on each side.
+// all, into a round red daifuku, the same both ways, its shoulders rounded and its sides bulging
+// low before tucking in at the foot, a white edge along the top and down the sides, a few
+// lighter dots; puffing up slowly, a little wider and taller, as the pet breathes beneath it.
+// 22 wide: 3 past the sprite on each side.
 const BLANKET = [
   '',
-  '.......oooooooo.......',
-  '.....oowwwwwwwwoo.....',
-  '....owwwwwwwwwwwwo....',
-  '...owwbbbbbbbbbbwwo...',
-  '...owbbbcbbbbcbbbwo...',
-  '..oowbbbbbbbbbbbbwoo..',
-  '.oowwbbcbbbbbbcbbwwoo.',
-  'oowwbbbbbbbbbbbbbbwwoo',
-  'owwbbbbbbcbbcbbbbbbwwo',
-  'owbbcbbbbbbbbbbbbcbbwo',
-  'oooooooooooooooooooooo',
+  '........oooooo........',
+  '.....ooowwwwwwooo.....',
+  '...oowwwwwwwwwwwwoo...',
+  '..owwwbbbbbbbbbbwwwo..',
+  '.owwbbbbcbbbbbbbbbwwo.',
+  '.owbbbbbbbbbbbcbbbbwo.',
+  'owbbcbbbbbbbbbbbbbbbwo',
+  'owbbbbbbbbbcbbbbbcbbwo',
+  'owbbbbbbbbbbbbbbbbbbwo',
+  '.owbbbcbbbbbbbbbbbbwo.',
+  '..oooooooooooooooooo..',
 ]
 const BLANKET_COLORS = { b: '#d0463e', c: '#ea7a70', w: '#f3eee6', o: '#9a2c27' }
-// The futon is scaled up and down from its bottom edge, so it breathes without lifting off the
-// ground; centred on a pet `width` wide. Only the pet's tail (`tail`) sticks out, from the
-// futon's foot at its back.
+// The futon is scaled up and down from the middle of its bottom edge, so it puffs out both ways
+// without lifting off the ground (never flatter than at rest, or the ears would show over it);
+// centred on a pet `width` wide. Only the pet's tail (`tail`) sticks out, from the futon's foot
+// at its back.
 function futon(tail: string, width: number): string {
-  return `${tail}<g transform="translate(0 12)"><g><animateTransform attributeName="transform" type="scale" values="1 1;1 1.06;1 1" dur="3s" repeatCount="indefinite"/>`
-    + `<g transform="translate(0 -12)">${pixels(BLANKET, futonLeft(width), 0, BLANKET_COLORS)}</g></g></g>`
+  const mid = futonLeft(width) + FUTON_W / 2
+  return `${tail}<g transform="translate(${mid} 12)"><g><animateTransform attributeName="transform" type="scale" values="1 1;1.05 1.03;1 1" dur="3s" repeatCount="indefinite"/>`
+    + `<g transform="translate(${-mid} -12)">${pixels(BLANKET, futonLeft(width), 0, BLANKET_COLORS)}</g></g></g>`
 }
 
 // The speech bubble the beckoning cat says "/compact" in, drawn in device px: a rounded bubble
@@ -648,7 +651,7 @@ function stageWidth(bodyColumns: number, label: string): number {
 }
 
 // How full the context is, as how round the pets are: rounder from each of these (%) on.
-const FAT_FROM_PCT = [40, 60, 80]
+const FAT_FROM_PCT = [40, 70]
 
 function fatOf(contextPct: number | null): number {
   return contextPct === null ? 0 : FAT_FROM_PCT.filter(p => contextPct >= p).length

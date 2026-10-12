@@ -398,17 +398,19 @@ test('ten cats cheering, with smoke, on a very wide band stay within the desktop
   await ui.unmount()
 })
 
-// the belly reaching row 11 (the ground) only from 60%; the back rounding at row 4 from 80%
-for (const [pct, ground, back] of [[20, false, false], [65, true, false], [85, true, true]] as const) {
-  test(`at ${pct}% context the cats are ${ground ? (back ? 'round' : 'chubby') : 'slim'}`, async ($, on) => {
+// the belly sagging to row 10 from 40%; reaching row 11 (the ground), with the back rounding at
+// row 4, from 70%
+for (const [pct, sag, round] of [[20, false, false], [50, true, false], [75, true, true]] as const) {
+  test(`at ${pct}% context the cats are ${round ? 'round' : sag ? 'chubby' : 'slim'}`, async ($, on) => {
     engine(on, 1.234, undefined, pct)
     await $.session.start(START)
     await settle()
     const ui = await $.ui.mount({ ...BAND, surface: 'desktop' })
     const source = String((await ui.find({ type: 'Svg' }))?.props.source)
     const trunk = source.slice(source.indexOf('<g id="t'), source.indexOf('</defs>'))
-    expect(/M\d+ 11h/.test(trunk)).toBe(ground)
-    expect(/M2 4h2/.test(trunk)).toBe(back)
+    expect(/M\d+ 10h/.test(trunk)).toBe(sag)
+    expect(/M\d+ 11h/.test(trunk)).toBe(round)
+    expect(/M2 4h2/.test(trunk)).toBe(round)
     await ui.unmount()
   })
 }
@@ -485,7 +487,7 @@ test('the cat, drawn from its data, looks exactly as it did', () => {
   let all = ''
   for (let coat = 0; coat < 10; coat++) {
     all += cat.css(coat, 1000)
-    for (const m of MOODS) for (let fat = 0; fat <= 3; fat++) {
+    for (const m of MOODS) for (let fat = 0; fat <= 2; fat++) {
       all += cat.trunk(m, coat, fat)
       for (const p of POSES) all += cat.body(m, coat, p, '<use href="#t0"/>', fat)
     }
@@ -493,7 +495,7 @@ test('the cat, drawn from its data, looks exactly as it did', () => {
   let extra = cat.maneki()
   for (let c = 0; c < 10; c++) extra += cat.futonTail(c)
   expect(cat.coats).toBe(10)
-  expect(fnv(all)).toBe('4adc4d47')
+  expect(fnv(all)).toBe('9d55fa23')
   expect(fnv(extra)).toBe('95c79f4d')
 })
 
