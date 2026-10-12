@@ -60,6 +60,8 @@ pets in the same band, and they react to your session:
 The band still opens on the status band. The ◒ / ◓ switch at its right end turns to the pets
 and back, and the choice is kept for later sessions. The pets' words are in Japanese.
 
+What they do and when, in full, is in [What the pets do](plugins/pixel-pet/README.md#what-the-pets-do).
+
 ### Install the pets
 
 pixel-pet uses the status band as its other view, so installing it brings the status band too.
