@@ -37,6 +37,49 @@ with it. Start a new session and the band appears above the prompt.
 
 The pets' words are in Japanese.
 
+## What the pets do
+
+The pets are drawn from the session's state, so what they do says how the session is going.
+This is the cat's behaviour; a pack's pet does the same with its own drawings.
+
+### From moment to moment
+
+| When | What the pets do |
+|---|---|
+| Between turns | Each runs to random spots along the band and rests in between. Now and then one leaps forward, rolls on its back, stretches, grooms, or runs to the bar at the right end to scratch it (each about one move in twenty). A heart floats up from one of them now and then. |
+| A turn ends | They all hop for six seconds, and two or three of them send hearts. |
+| After each turn | What the turn cost (API-equivalent) floats up beside the bar as a coin for four seconds: gray, yellow from $0.50, red from $2. A red coin startles the cheering pets, who show "!" instead of hearts. |
+| 10 minutes with no activity | They lie down and doze off. |
+| An hour after the last call | The prompt cache has expired. They sleep under futons with only their tails sticking out, and the band shows what the next message will cost to write the conversation to the cache again. |
+| After `/compact` | They stop and eat a reward for ten seconds (the cat's is a fish). |
+
+### As the context fills
+
+| Context | What changes |
+|---|---|
+| 40% | The pets grow rounder, run at about half speed, rest longer and often lie flat, and no longer leap, scratch or roll. One of them leaves the herd and sits right of the bar as a beckoning cat (maneki-neko), saying `/compact` in a bubble. Press the cat or the bubble to compact. |
+| 70% | Rounder still: their bellies reach the ground and hide their legs. |
+
+Once the cache has expired, the beckoning cat says `/clear` instead, with the price of carrying
+on, when the next message would cost $0.50 or more: a new task is cheapest in a new
+conversation.
+
+### How many pets
+
+Up to ten. The label right of the bar says what the herd's size follows; press it to choose
+another. The choice is kept for later sessions.
+
+| Measure | Label | Pets |
+|---|---|---|
+| Cost | `$12.4` | This session's API-equivalent cost: one more at each of $0.50, $2.50, $5.50, $10, $15, $22, $30, $40 and $50. |
+| Efficiency | `eff 45%` | The share of the last 7 days' cost that went to new work rather than re-reading the context: one at 20%, ten at 70%. |
+| Context | `ctx 30%` | One more for each 10% of the context. |
+| Turns | `120 turns` | Turns finished together, over every session: one more at each of 10, 25, 50, 100, 200, 350, 500, 750 and 1,000. |
+| Quota | `5h 60% left` | What is left of the 5-hour limit: one near 0%, ten at 100%. |
+
+When the herd grows or shrinks, the pets that come and go do so in a puff of smoke. Their coats
+are dealt at random for each session. The tenth is a secret.
+
 ## Making your own pet
 
 A pet is data, not code: a handful of pixel-art drawings and a few words. pixel-pet moves every
