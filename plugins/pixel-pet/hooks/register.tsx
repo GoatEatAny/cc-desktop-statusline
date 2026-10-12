@@ -1011,7 +1011,8 @@ export const register: Register = on => {
     await $.command.register({ name: 'pet', description: 'Pick the pet in the band (pixel-pet); no id lists them', argumentHint: '[id]' }).catch(() => undefined)
     const savedMode = await $.store.get('mode')
     const savedTurns = Number((await $.store.get('turns')) ?? 0)
-    await $.state.set(mode, savedMode === 'stats' ? 'stats' : 'pet')
+    // The status band first; the pets once the person has switched to them (kept from then on).
+    await $.state.set(mode, savedMode === 'pet' ? 'pet' : 'stats')
     // A reload of the mod keeps the session's coats; a new session deals them anew.
     const { value: dealt = null } = await $.state.get(coatSeed)
     if (dealt === null) await $.state.set(coatSeed, await $.clock.now())
@@ -1107,7 +1108,7 @@ export const register: Register = on => {
     if (e.props.hasSurvey) return next(e)
 
     const { Box, Text, Button } = $.ui.resolve(e)
-    const { value: current = 'pet' } = await $.state.get(mode)
+    const { value: current = 'stats' } = await $.state.get(mode)
 
     // One glyph, a half-filled circle: two stacked page dots with no gap between them.
     // Top half filled is stats, bottom half is the pet. One cell wide and one row tall, so it

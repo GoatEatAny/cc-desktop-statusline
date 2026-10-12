@@ -14,7 +14,7 @@
     {
       "name": "pixel-pet",
       "source": "./plugins/pixel-pet",
-      "description": "A herd of pixel-art pets in the band above the prompt that react to your session: they cheer after a turn, grow rounder as the context fills, nap under a futon once the prompt cache goes cold, and a beckoning figurine offers /compact. A switch flips back to the status band."
+      "description": "A herd of pixel-art pets in the band above the prompt that react to your session: they cheer after a turn, grow rounder as the context fills, nap under a futon once the prompt cache goes cold, and a beckoning figurine offers /compact. The band opens on the status band; a switch turns to the pets."
     },
     {
       "name": "pixel-pet-dog",

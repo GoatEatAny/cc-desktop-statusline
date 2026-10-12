@@ -27,7 +27,8 @@ function engine(on: On, usd = 1.234, band?: Band, contextPct?: number) {
   const clock = mock.clock(on, { now: 1_000_000 })
   lastClock = clock
   cleared = false
-  mock.store(on)
+  // Most tests are about the pets; a new install starts on the status band (tested below).
+  mock.store(on, { mode: 'pet' })
   on('session.start', ($, e) => ({ cwd: e.cwd }))
   on('ui.render', band ?? (($, e) => {
     const { Text } = $.ui.resolve(e)
@@ -584,4 +585,22 @@ test('a pet without a leap runs through it, and one without an eating pose still
   const pet = buildPet({ ...CAT, poses: rest })
   expect(pet.body('idle', 0, 'jump', '<use/>')).toBe(pet.body('idle', 0, 'run', '<use/>'))
   expect(pet.body('reward', 0, 'eat', '<use/>')).toContain('#8ec5e8')
+})
+
+test('a new install starts on the status band, and the switch turns to the pets', async ($, on) => {
+  mock.clock(on, { now: 1_000_000 })
+  mock.store(on)
+  on('session.start', ($, e) => ({ cwd: e.cwd }))
+  on('ui.render', ($, e) => {
+    const { Text } = $.ui.resolve(e)
+    return <Text>status band</Text>
+  })
+  on('session.usage', () => ({ value: { startedAt: 0, context: { window: 200_000, percent: 10 }, rateLimits: [], cost: { usd: 1 } } }) as never)
+  await $.session.start(START)
+  const ui = await $.ui.mount({ ...BAND, surface: 'desktop' })
+  expect(await ui.find({ type: 'Text', text: /status band/ })).toBeDefined()
+  expect((await ui.find({ key: 'toggle-view' }))?.text).toBe('◓')
+  await ui.press({ key: 'toggle-view' })
+  expect((await ui.find({ key: 'toggle-view' }))?.text).toBe('◒')
+  await ui.unmount()
 })
