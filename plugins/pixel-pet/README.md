@@ -1,9 +1,6 @@
 # pixel-pet
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="../../docs/pixel-pet-dark.gif">
-  <img alt="A herd of pixel-art cats running and cheering in the band, beside a beckoning cat offering /compact" src="../../docs/pixel-pet.gif">
-</picture>
+<img alt="A herd of pixel-art cats running in the band above the prompt in the Claude Code desktop app" src="../../docs/pixel-pet.gif">
 
 A herd of pixel-art pets in the band above the prompt, reacting to your session:
 

@@ -43,10 +43,7 @@ claude plugin marketplace remove cc-desktop-statusline
 
 ## Pixel pet (optional)
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/pixel-pet-dark.gif">
-  <img alt="A herd of pixel-art cats running and cheering in the band, beside a beckoning cat offering /compact" src="docs/pixel-pet.gif">
-</picture>
+<img alt="A herd of pixel-art cats running in the band above the prompt in the Claude Code desktop app" src="docs/pixel-pet.gif">
 
 [pixel-pet](plugins/pixel-pet) is a second mod in this marketplace. It puts a herd of pixel-art
 pets in the same band, and they react to your session:
