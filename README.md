@@ -43,22 +43,53 @@ claude plugin marketplace remove cc-desktop-statusline
 
 ## Pixel pet (optional)
 
-[pixel-pet](plugins/pixel-pet) is a second mod in this marketplace: a herd of pixel-art cats in
-the same band. They cheer when a turn ends, grow rounder as the context fills, sleep under a
-futon once the prompt cache goes cold, and a beckoning cat beside the bar offers `/compact`
-(or `/clear`). The band still opens on the status band; the ◒ / ◓ switch at its right end
-turns to the pets (and back), and the choice is kept. Its
-words are in Japanese.
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/pixel-pet-dark.gif">
+  <img alt="A herd of pixel-art cats running and cheering in the band, beside a beckoning cat offering /compact" src="docs/pixel-pet.gif">
+</picture>
 
-It depends on the status band (its other view), so the status band is installed with it:
+[pixel-pet](plugins/pixel-pet) is a second mod in this marketplace. It puts a herd of pixel-art
+pets in the same band, and they react to your session:
+
+- They cheer when a turn ends, and nap when left alone.
+- They grow rounder as the context window fills.
+- They sleep under a futon once the prompt cache has gone cold.
+- A beckoning figurine beside the bar offers `/compact` (or `/clear`), and after a compaction
+  the pets eat a reward.
+
+The band still opens on the status band. The ◒ / ◓ switch at its right end turns to the pets
+and back, and the choice is kept for later sessions. The pets' words are in Japanese.
+
+### Install the pets
+
+pixel-pet uses the status band as its other view, so installing it brings the status band too.
 
 ```bash
 claude plugin install pixel-pet@cc-desktop-statusline
-claude plugin install pixel-pet-dog@cc-desktop-statusline   # optional: a dog, then /pet dog
 ```
 
-Pets are data, not code: [pixel-pet-dog](plugins/pixel-pet-dog) is a complete pet pack to copy,
-and pixel-pet's [README](plugins/pixel-pet/README.md) explains how to draw one.
+A cat comes built in. A dog comes as a separate pet pack:
+
+```bash
+claude plugin install pixel-pet-dog@cc-desktop-statusline
+```
+
+Start a new session. Type `/pet` to list the pets, and `/pet dog` (or `/pet cat`) to choose one.
+Your choice is kept for later sessions.
+
+### Make your own pet
+
+You can draw a pet of your own and add it to the band. A pet is data, not code: a handful of
+pixel-art drawings and a few words. pixel-pet does all the moving (running, leaping, rolling,
+sleeping, eating), so a new animal is one file of drawings and a hook of three lines.
+
+1. Copy [pixel-pet-dog](plugins/pixel-pet-dog) to a folder of your own, for example `~/my-pet`.
+2. Rename the plugin, and give the pet an id such as `shiba`.
+3. Redraw the art in `hooks/dog.ts`. To start, you can keep the dog and change only its colors.
+4. Load the folder into Claude Code and type `/pet shiba`.
+
+The full walkthrough, with the letters to draw with and the checks a pet must pass, is in
+[Making your own pet](plugins/pixel-pet/README.md#making-your-own-pet).
 
 ## Requirements
 
