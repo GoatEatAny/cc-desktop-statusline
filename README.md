@@ -41,6 +41,22 @@ claude plugin uninstall cc-desktop-statusline@cc-desktop-statusline
 claude plugin marketplace remove cc-desktop-statusline
 ```
 
+## Pixel pet (optional)
+
+[pixel-pet](plugins/pixel-pet) is a second mod in this marketplace: a herd of pixel-art cats in
+the same band. They cheer when a turn ends, grow rounder as the context fills, sleep under a
+futon once the prompt cache goes cold, and a beckoning cat beside the bar offers `/compact`
+(or `/clear`). The ◒ / ◓ switch at the band's right end flips back to the status band. Its
+words are in Japanese.
+
+```bash
+claude plugin install pixel-pet@cc-desktop-statusline
+claude plugin install pixel-pet-dog@cc-desktop-statusline   # optional: a dog, then /pet dog
+```
+
+Pets are data, not code: [pixel-pet-dog](plugins/pixel-pet-dog) is a complete pet pack to copy,
+and pixel-pet's [README](plugins/pixel-pet/README.md) explains how to draw one.
+
 ## Requirements
 
 - **Claude Code with mod support.** Tested with the desktop app on Claude Code 2.1.286.

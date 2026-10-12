@@ -1,0 +1,13 @@
+{
+  "name": "pixel-pet-dog",
+  "displayName": "Pixel Pet: Dog",
+  "version": "0.1.0",
+  "description": "A pet pack for pixel-pet: a floppy-eared puppy in seven coats. /pet dog puts it in the band.",
+  "author": {
+    "name": "GoatEatAny",
+    "url": "https://github.com/GoatEatAny"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/GoatEatAny/cc-desktop-statusline",
+  "dependencies": ["pixel-pet"]
+}
