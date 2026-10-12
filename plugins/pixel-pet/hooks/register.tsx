@@ -651,7 +651,7 @@ function stageWidth(bodyColumns: number, label: string): number {
 }
 
 // How full the context is, as how round the pets are: rounder from each of these (%) on.
-const FAT_FROM_PCT = [40, 60, 80]
+const FAT_FROM_PCT = [40, 70]
 
 function fatOf(contextPct: number | null): number {
   return contextPct === null ? 0 : FAT_FROM_PCT.filter(p => contextPct >= p).length

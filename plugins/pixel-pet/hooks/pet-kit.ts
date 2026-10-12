@@ -22,7 +22,7 @@ export type Pet = {
   /**
    * The pet's trunk for a mood: body and face, without legs or tail, in sprite pixels, facing
    * right. `coat` picks one of the pet's looks, so a herd is not all the same animal. Drawn
-   * once per pet and reused by every pose, which keeps a herd's SVG small. `fat` (0-3) is how
+   * once per pet and reused by every pose, which keeps a herd's SVG small. `fat` (0-2) is how
    * full the context is: a fuller one makes a rounder pet.
    */
   trunk: (mood: Mood, coat: number, fat?: number) => string
@@ -76,7 +76,7 @@ export function buildPet(spec: PetSpec): Pet {
     return { ...coats[j], L: `.cl${j}`, P: `.cp${j}` }
   }
 
-  const bodyRows = (fat: number): Rows => (fat > 0 && spec.fat !== undefined ? spec.fat[Math.min(3, fat) - 1] : spec.body)
+  const bodyRows = (fat: number): Rows => (fat > 0 && spec.fat !== undefined ? spec.fat[Math.min(2, fat) - 1] : spec.body)
 
   const body = (c: Palette, fat: number) => {
     if (c.u !== undefined && spec.ultra !== undefined) return ultraBody(spec.ultra, bodyRows(fat))
@@ -233,7 +233,7 @@ export function inspectPet(spec: PetSpec): { pet: Pet } | { problem: string } {
       && v.frames.every(f => rows(f)) && typeof v.each === 'number' && v.each >= 0.05 && v.each <= 5)
     const poseArt = (v: unknown) => isObject(v) && ['behind', 'front'].every(k => v[k] === undefined || (Array.isArray(v[k]) && (v[k] as unknown[]).length <= 6 && (v[k] as unknown[]).every(art)))
     if (!rows(s.body)) return { problem: `body が ${PET_LIMITS.rows} 行・幅 ${maxW + 4} を超える` }
-    if (s.fat !== undefined && !(Array.isArray(s.fat) && s.fat.length === 3 && s.fat.every(b => rows(b)))) return { problem: 'fat は3つの体' }
+    if (s.fat !== undefined && !(Array.isArray(s.fat) && s.fat.length === 2 && s.fat.every(b => rows(b)))) return { problem: 'fat は2つの体' }
     if (s.patches !== undefined && !rows(s.patches)) return { problem: 'patches の絵が大きすぎる' }
     const eyes = s.eyes
     if (!isObject(eyes) || !rows(eyes.cover) || !Object.entries(eyes).every(([k, v]) => (k === 'cover' || MOODS.includes(k as Mood)) && rows(v))) return { problem: 'eyes は cover と気分ごとの絵' }
@@ -261,7 +261,7 @@ export function inspectPet(spec: PetSpec): { pet: Pet } | { problem: string } {
     const pet = buildPet(spec)
     for (let coat = 0; coat < pet.coats; coat++) {
       if (pet.css(coat, 0).length > PET_LIMITS.trunk || pet.futonTail(coat).length > PET_LIMITS.pose) return { problem: '絵が大きすぎる' }
-      for (const m of MOODS) for (let fat = 0; fat <= 3; fat++) {
+      for (const m of MOODS) for (let fat = 0; fat <= 2; fat++) {
         if (pet.trunk(m, coat, fat).length > PET_LIMITS.trunk) return { problem: '体の絵が大きすぎる' }
         for (const p of POSES) if (pet.body(m, coat, p, '<use href="#t0"/>', fat).length > PET_LIMITS.pose) return { problem: `${p} の絵が大きすぎる` }
       }

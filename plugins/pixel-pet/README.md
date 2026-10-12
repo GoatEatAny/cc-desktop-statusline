@@ -8,7 +8,7 @@
 A herd of pixel-art pets in the band above the prompt, reacting to your session:
 
 - They cheer when a turn ends, and nap when left alone.
-- They grow rounder as the context window fills (at 40%, 60% and 80%).
+- They grow rounder as the context window fills (at 40% and 70%).
 - They sleep under a futon once the prompt cache has gone cold.
 - A beckoning figurine beside the bar offers `/compact` (or `/clear`), and after a compaction
   the pets eat a reward.
@@ -109,7 +109,7 @@ redraw the `body`, and the rest piece by piece.
 | `eyes` | yes | `cover` paints the open eyes out; then the eyes for each mood (`happy`, `sleep`, `reward`…). |
 | `poses.run`, `.stand`, `.sleep` | yes | The layers around the body: `behind` (legs) and `front` (tail, paws). |
 | `poses.jump`, `.roll`, `.stretch`, `.groom`, `.scratch`, `.eat`, `.beckon` | no | Left out, the pet stands instead (the dog has no `groom`). A missing `jump` runs; a missing `eat` eats standing. |
-| `fat` | no | Three rounder bodies, for 40%, 60% and 80% of the context. |
+| `fat` | no | Two rounder bodies, for 40% and 70% of the context. |
 | `patches` | no | `a`/`b` marks drawn over the body. |
 | `food` | no | The reward after `/compact`, up to three bites, in its own colors. |
 | `futonTail` | no | What sticks out of the futon; rows as wide as the piece itself (up to 8). |

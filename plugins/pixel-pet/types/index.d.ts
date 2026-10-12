@@ -39,8 +39,8 @@ export type PixelPetSpec = {
   readonly coats: readonly PixelPetPalette[]
   /** The body and face, without legs or tail, eyes open. */
   readonly body: PixelPetRows
-  /** Rounder bodies as the context fills (40%, 60%, 80%); without them, it stays as it is. */
-  readonly fat?: readonly [PixelPetRows, PixelPetRows, PixelPetRows]
+  /** Rounder bodies as the context fills (40%, 70%); without them, it stays as it is. */
+  readonly fat?: readonly [PixelPetRows, PixelPetRows]
   /** Patches over the body, in a and b, for the coats that color them. */
   readonly patches?: PixelPetRows
   /** Eyes by mood, drawn over `cover`, which paints out the open ones. A mood without eyes of
