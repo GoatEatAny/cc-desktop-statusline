@@ -1,7 +1,7 @@
 {
   "name": "pixel-pet",
   "displayName": "Pixel Pet",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A herd of pixel-art pets in the band above the prompt: they cheer when a turn ends, grow rounder as the context fills, sleep under a futon once the prompt cache goes cold, and a beckoning figurine offers /compact. A switch flips back to the status band; /pet picks the pet, and pet packs add more. Local only: no network requests.",
   "author": {
     "name": "GoatEatAny",
@@ -9,5 +9,8 @@
   },
   "license": "MIT",
   "homepage": "https://github.com/GoatEatAny/cc-desktop-statusline",
-  "types": "./types/index.d.ts"
+  "types": "./types/index.d.ts",
+  "dependencies": [
+    "cc-desktop-statusline"
+  ]
 }

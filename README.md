@@ -46,8 +46,11 @@ claude plugin marketplace remove cc-desktop-statusline
 [pixel-pet](plugins/pixel-pet) is a second mod in this marketplace: a herd of pixel-art cats in
 the same band. They cheer when a turn ends, grow rounder as the context fills, sleep under a
 futon once the prompt cache goes cold, and a beckoning cat beside the bar offers `/compact`
-(or `/clear`). The ◒ / ◓ switch at the band's right end flips back to the status band. Its
+(or `/clear`). The band still opens on the status band; the ◒ / ◓ switch at its right end
+turns to the pets (and back), and the choice is kept. Its
 words are in Japanese.
+
+It depends on the status band (its other view), so the status band is installed with it:
 
 ```bash
 claude plugin install pixel-pet@cc-desktop-statusline

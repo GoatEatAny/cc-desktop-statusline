@@ -6,7 +6,8 @@ gone cold, and a beckoning figurine beside the bar offers `/compact` (or `/clear
 comes built in; other pets come from **pet packs**, small mods of their own.
 
 - `/pet` lists the pets there are; `/pet <id>` puts one in the band (kept for later sessions).
-- The ◒ / ◓ switch at the band's right end swaps between the pets and the status band.
+- The ◒ / ◓ switch at the band's right end swaps between the status band (shown first) and the
+  pets; the choice is kept for later sessions.
 
 ## Making a pet pack
 
